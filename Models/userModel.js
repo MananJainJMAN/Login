@@ -44,17 +44,18 @@ userSchema.methods.comparePassword = async function(pswd,pswdDB)
 }
 
 //Password reset Token
-userSchema.methods.createResetPasswordToken =()=>
-{
-    //simple unhashsed token
-   const resetToken = crypto.randomBytes(32).toString('hex')
-   this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
-   this.PasswordResetTokenExpired = Date.now() + 10*(60*1000)
+// Password reset Token
+userSchema.methods.createResetPasswordToken = function() {
+    // Simple unhashed token
+    const resetToken = crypto.randomBytes(32).toString('hex');
+    this.passwordResetToken = crypto.createHash('sha256').update(resetToken).digest('hex');
+    this.PasswordResetTokenExpired = Date.now() + 10 * (60 * 1000);
 
-   console.log(this.passwordResetToken,resetToken)
-   //user will get the simple token on the mail
-   //then we compare
+    console.log(this.passwordResetToken, resetToken);
 
-   return resetToken
-}
+    // User will get the simple token on the mail
+    // then we compare
+
+    return resetToken;
+};
 module.exports = mongoose.model('User', userSchema);

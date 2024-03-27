@@ -23,7 +23,7 @@ const sendEmail = async (option)=>
         subject: option.subject,
         text:option.message
     }
-   await transporter.sendMail()
+   await transporter.sendMail(emailOptions)
 
 }
 
