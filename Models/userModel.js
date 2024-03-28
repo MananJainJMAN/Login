@@ -3,6 +3,7 @@ const validator = require('validator');
 const bcrypt = require('bcryptjs')
 const crypto = require('crypto')
 
+
 const userSchema = new mongoose.Schema({
     // Define other fields as needed
     email: {
@@ -12,19 +13,28 @@ const userSchema = new mongoose.Schema({
         lowercase: true,
         validate: [validator.isEmail, 'Please Enter the Valid Email']
     },
-
     password: {
         type: String,
         required: [true, 'Please enter your password'],
         // validate: [validator.isStrongPassword,"Too Weak"]
     },
-    passwordResetToken:
-    {
-        type:String
+    passwordResetToken: {
+        type: String
     },
-    PasswordResetTokenExpired:Date
-   
-    
+
+    PasswordResetTokenExpired: {
+        type:Date
+    },
+    role: {
+        type: String,
+        enum: ['Admin', 'User'], // Define enum for roles
+        required: true
+    },
+    department: {
+        type: String,
+        enum: ['HR', 'IT', 'Finance', 'Marketing'], // Define enum for departments
+        required: true
+    }
 });
 
 //hashing before saving

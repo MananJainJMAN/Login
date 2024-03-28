@@ -14,14 +14,14 @@ const sendEmail = async (option)=>
           
 
     })
-
+   
     //DEFINE EMAIL OPTIONS
     const emailOptions =
     {
-        from: 'MananJain',
+        from: 'dUMMY@gmail.com',
         to: option.email,
         subject: option.subject,
-        text:option.message
+        html:option.message
     }
    await transporter.sendMail(emailOptions)
 

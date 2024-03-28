@@ -7,10 +7,13 @@ const util = require('util')
 const sendEmail = require('../Utils/Email')
 const crypto = require('crypto')
 const generator = require('generate-password');
+const emailTemplate = require('../Utils/EmailTemplate')
 
 //createUser
 exports.createUser = asyncErrorHandler(async (req, res, next) => {
-    const { email } = req.body;
+    const { email } = req.body
+    const {role} = req.body
+    const {department} = req.body
 
     // Generate a random password for the new user
     const randomPassword = generator.generate(
@@ -22,13 +25,15 @@ exports.createUser = asyncErrorHandler(async (req, res, next) => {
 
 
 
-    const newUser = await User.create({ email, password: randomPassword });
+    const newUser = await User.create({ email, password: randomPassword , role:role, department:department });
 
     // Send the random password to the user's email along with the password reset link
     const resetToken = newUser.createResetPasswordToken();
     await newUser.save();
     const resetURL = `${req.protocol}://${req.get('host')}/user/resetPassword/${resetToken}`;
-    const message = `Your account has been created. Your temporary password is: ${randomPassword}. Please use the following link to reset your password: ${resetURL}`;
+   // In your function
+    const message = emailTemplate.replace('{{resetURL}}', resetURL);
+
     
     try {
         await sendEmail({
@@ -98,7 +103,9 @@ exports.forgotPassword = asyncErrorHandler(async (req,res,next)=>
 
    //3. send the token back to the email
    const resetURl = `${req.protocol}://${req.get('host')}/user/resetPassword/${resetToken}`
-  const message = `We have recieved a password reset request. Please use the below given link to change the password\n\n${resetURl}`
+    // In your function
+    const message = emailTemplate.replace('{{resetURL}}', resetURL);
+
   console.log(resetURl)  
   try{ 
   await sendEmail(
@@ -165,3 +172,26 @@ res.status(200).json(
 
 })
  })
+
+ // Delete User
+exports.deleteUser = asyncErrorHandler(async (req, res, next) => {
+    const userId = req.params.id; // Assuming you're passing user ID in the request parameters
+
+    // Find the user by ID and delete
+    const user = await User.findByIdAndDelete(userId);
+
+    if (!user) {
+        return res.status(404).json({ status: 'error', message: 'User not found' });
+    }
+
+    res.status(200).json({ status: 'success', message: 'User deleted successfully' });
+});
+
+// Get All Users
+exports.getAllUsers = asyncErrorHandler(async (req, res, next) => {
+    // Fetch all users from the database
+    const users = await User.find();
+
+    res.status(200).json({ status: 'success', data: users });
+});
+

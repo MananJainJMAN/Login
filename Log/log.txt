@@ -1,0 +1,17 @@
+Day1
+
+Completed:
+Authentication,Token generation,forgot password, Recreate password
+
+Remaining:
+Admin Create the user using the mail ID (its in there but you have to give a button to make user and getting the details)
+
+Day2
+
+Completed:
+DataModel is ready , API CRUD on the models 
+
+Remaining:
+User Perspective API and Mapping of the data with respect to him like personalized data 
+
+up to go!!! for next frontend, UI design , and functions and features

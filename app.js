@@ -1,6 +1,10 @@
 const express = require('express')
 const connectToDB = require('./config/db')
 const authRouter = require('./Routes/authRouter')
+const TrainPlanRouter = require('./Routes/TrainPlanRouter')
+const TrainModuleRouter = require('./Routes/TrainModuleRouter')
+const TrainingAssessmentRouter = require('./Routes/TrainingAssesRouter')
+const ProgressTrackerRouter = require('./Routes/ProgressTrackerRouter')
 
 
 
@@ -12,6 +16,7 @@ app.use(express.json());
 
 
 app.use('/user',authRouter)
+app.use('/admin',TrainPlanRouter,TrainModuleRouter,TrainingAssessmentRouter,ProgressTrackerRouter)
 
 
 // Start the server after successfully connecting to the database
