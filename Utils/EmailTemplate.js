@@ -37,9 +37,11 @@ const emailTemplate = `
             <h2>Password Reset Request</h2>
             <p>We have received a password reset request for your account. Please use the following link to reset your password:</p>
             <a class="reset-link" href="{{resetURL}}">Reset Password</a>
+            <p>Your temporary password is: <strong>{{tempPassword}}</strong></p>
             <p>If you did not request a password reset, please ignore this email.</p>
         </div>
     </body>
     </html>
 `;
+
 module.exports = emailTemplate

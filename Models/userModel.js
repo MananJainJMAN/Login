@@ -27,12 +27,12 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
-        enum: ['Admin', 'User'], // Define enum for roles
+        enum: ['Admin', 'Employee'], // Define enum for roles
         required: true
     },
     department: {
         type: String,
-        enum: ['HR', 'IT', 'Finance', 'Marketing'], // Define enum for departments
+        enum: ['HR', 'IT', 'Finance'], // Define enum for departments
         required: true
     }
 });

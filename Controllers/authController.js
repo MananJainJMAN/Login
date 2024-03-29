@@ -31,15 +31,18 @@ exports.createUser = asyncErrorHandler(async (req, res, next) => {
     const resetToken = newUser.createResetPasswordToken();
     await newUser.save();
     const resetURL = `${req.protocol}://${req.get('host')}/user/resetPassword/${resetToken}`;
-   // In your function
-    const message = emailTemplate.replace('{{resetURL}}', resetURL);
+   
+     // Update the email message template to include the random password
+     const emailMessage = emailTemplate
+     .replace('{{resetURL}}', resetURL)
+     .replace('{{tempPassword}}', randomPassword);
 
     
     try {
         await sendEmail({
             email: newUser.email,
             subject: 'Welcome to the platform!',
-            message: message
+            message: emailMessage
         });
         res.status(201).json({ status: 'success', message: 'New account created. Check your email for login details.' });
     } catch (error) {
