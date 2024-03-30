@@ -15,3 +15,23 @@ Remaining:
 User Perspective API and Mapping of the data with respect to him like personalized data 
 
 up to go!!! for next frontend, UI design , and functions and features
+
+Day 3
+
+Completed:
+Frontend:
+Login Page , Admin page , createUser
+
+Backend:
+mail are sending to them , all apis of the admin is used , user table visible
+
+Remaining:
+now login and password change by user
+
+
+
+Day 4
+
+Completed:
+cookie creation , rate limiting(css prevention), safe header using helmet(brute force, dos), 
+data sanitization , Add search functionality in users

@@ -8,6 +8,7 @@ const sendEmail = require('../Utils/Email')
 const crypto = require('crypto')
 const generator = require('generate-password');
 const emailTemplate = require('../Utils/EmailTemplate')
+const forgotemailTemplate = require('../Utils/forgotEmail')
 
 //createUser
 exports.createUser = asyncErrorHandler(async (req, res, next) => {
@@ -30,7 +31,7 @@ exports.createUser = asyncErrorHandler(async (req, res, next) => {
     // Send the random password to the user's email along with the password reset link
     const resetToken = newUser.createResetPasswordToken();
     await newUser.save();
-    const resetURL = `${req.protocol}://${req.get('host')}/user/resetPassword/${resetToken}`;
+    const resetURL = `${req.protocol}://localhost:3000/user/resetPassword/${resetToken}`;
    
      // Update the email message template to include the random password
      const emailMessage = emailTemplate
@@ -44,7 +45,7 @@ exports.createUser = asyncErrorHandler(async (req, res, next) => {
             subject: 'Welcome to the platform!',
             message: emailMessage
         });
-        res.status(201).json({ status: 'success', message: 'New account created. Check your email for login details.' });
+        res.status(201).json({ status: 'success', message: 'New account created. Mail Sent for password Change' });
     } catch (error) {
         return next(new Error('Error sending email. Please try again later.'));
     }
@@ -75,17 +76,38 @@ exports.login = asyncErrorHandler(async (req, res, next) => {
         return res.status(401).json({ status: 'error', message: 'Invalid email or password. Please reset your password.' });
     }
 
-    // If user exists and password matches, generate JWT token
-    const token = jwt.sign({ id: user._id }, process.env.SECRET_STR, {
-        expiresIn: process.env.LOGIN_EXPIRES
-    });
 
     await user.save();
 
-    // Send token in response
-    res.status(200).json({ status: 'success', token });
+    //send response
+    createSendResponse(user,200,res)
+
 });
 
+
+// SendResponseCookie
+const createSendResponse = (user,statusCode,res)=>
+{
+
+     // If user exists and password matches, generate JWT token
+     const token = jwt.sign({ id: user._id }, process.env.SECRET_STR, {
+        expiresIn: process.env.LOGIN_EXPIRES
+    })
+
+    //role 
+    const role = user.role
+      
+    const options = {
+        maxAge: process.env.LOGIN_EXPIRES,
+        httpOnly:true
+    }
+    //Cookie
+    res.cookie('jwt',token,options)
+   res.status(statusCode).json({
+    status:'sucess',
+    token,
+role})
+}
 
 //forget Password
 exports.forgotPassword = asyncErrorHandler(async (req,res,next)=>
@@ -105,9 +127,9 @@ exports.forgotPassword = asyncErrorHandler(async (req,res,next)=>
    await user.save();
 
    //3. send the token back to the email
-   const resetURl = `${req.protocol}://${req.get('host')}/user/resetPassword/${resetToken}`
+   const resetURl = `${req.protocol}://localhost:3000/user/resetPassword/${resetToken}`
     // In your function
-    const message = emailTemplate.replace('{{resetURL}}', resetURL);
+    const message = forgotemailTemplate.replace('{{resetURL}}', resetURl);
 
   console.log(resetURl)  
   try{ 
@@ -157,12 +179,12 @@ exports.resetPassword = asyncErrorHandler( async (req,res,next)=>
 
     }
 // update the password & update the resettokens
-    user.password = req.body.password
+    user.password = req.body.newPassword
     user.passwordResetToken = undefined
     user.PasswordResetTokenExpired = undefined
 
     user.save()
-    console.log("token saved")
+    console.log("Password Changed")
 // login the user
 const Logintoken = jwt.sign({ id: user._id }, process.env.SECRET_STR, {
     expiresIn: process.env.LOGIN_EXPIRES
