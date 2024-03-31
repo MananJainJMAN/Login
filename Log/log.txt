@@ -26,12 +26,19 @@ Backend:
 mail are sending to them , all apis of the admin is used , user table visible
 
 Remaining:
-now login and password change by user
+
 
 
 
 Day 4
 
 Completed:
-cookie creation , rate limiting(css prevention), safe header using helmet(brute force, dos), 
-data sanitization , Add search functionality in users
+cookie creation / session , rate limiting(css prevention), safe header using helmet(brute force, dos), 
+data sanitization , Add search functionality in users, mutating , Add search functionality in user, 
+then user view 
+
+Remaining:
+Work on each module and that are visible to the users also
+MongoDB mapping with the user and also the inner content
+
+Data: Read About Data seeding and also data engineering part
