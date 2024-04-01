@@ -23,11 +23,8 @@ exports.getAllTrainingModules = async (req, res) => {
 // Update a Training Module
 exports.updateTrainingModule = async (req, res) => {
     try {
-        const updatedTrainingModule = await TrainingModule.findOneAndUpdate(
-            { moduleID: req.params.moduleID }, // Query criteria to find the document to update
-            req.body,       // Update fields
-            { new: true }      
-        );
+        const moduleID = req.params.moduleID
+        const updatedTrainingModule = await TrainingModule.findByIdAndUpdate(moduleID,req.body)
         if (!updatedTrainingModule) {
             return res.status(404).json({ message: 'Training module not found' });
         }
@@ -40,10 +37,8 @@ exports.updateTrainingModule = async (req, res) => {
 // Delete a Training Module
 exports.deleteTrainingModule = async (req, res) => {
     try {
-        const deletedTrainingModule =await TrainingModule.findOneAndDelete(
-            { moduleID: req.params.moduleID }, // Query criteria to find the document to update
-            req.body,       // Update fields
-            { new: true }      );
+        const moduleID = req.params.moduleID
+        const deletedTrainingModule =await TrainingModule.findByIdAndDelete(moduleID)
         if (!deletedTrainingModule) {
             return res.status(404).json({ message: 'Training module not found' });
         }
