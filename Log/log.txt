@@ -42,3 +42,15 @@ Work on each module and that are visible to the users also
 MongoDB mapping with the user and also the inner content
 
 Data: Read About Data seeding and also data engineering part
+
+Day 5:
+
+Frontend: almost all modules Completed
+Remaining: Form more structured
+            Module Completed or not
+            Validation for all the input fields
+            route protection
+
+//next day plan is to:
+User Dashboard in single page using big calender and all scores and all in one dashboard
+

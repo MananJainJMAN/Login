@@ -8,10 +8,5 @@ router.post('/training-assessment', TrainingAssessmentor.createTrainingAssessmen
 // Get All Training assessment
 router.get('/training-assessment', TrainingAssessmentor.getAllTrainingAssessments);
 
-// Update a Training Module
-router.put('/training-assessment/:assessmentID', TrainingAssessmentor.updateTrainingAssessment);
-
-// Delete a Training Module
-router.delete('/training-assessment/:assessmentID', TrainingAssessmentor.deleteTrainingAssessment);
 
 module.exports = router;

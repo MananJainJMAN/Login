@@ -10,6 +10,8 @@ const trainingModuleSchema = new mongoose.Schema({
         title: { type: String, required: true },
         url: { type: String, required: true }
     }] // Array of resource links containing title and URL
+
+    //completed or not have to add
 });
 
 module.exports = mongoose.model('TrainingModule', trainingModuleSchema);

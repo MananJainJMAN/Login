@@ -1,7 +1,6 @@
 const TrainingModule = require('../Models/TrainingModule')
 const mongoose = require('mongoose');
 const trainingPlanSchema = new mongoose.Schema({
-    planID: { type: Number, required: true },
     planName: { type: String, required: true },
     department: {
         type: String,
@@ -9,11 +8,11 @@ const trainingPlanSchema = new mongoose.Schema({
         required: true
     },
     description: { type: String },
-    moduleID: { type:Number, ref: TrainingModule ,required: true },
+    moduleID: { type:String, ref: TrainingModule ,required: true },
     schedule: {
-        startDate: { type: Date, required: true }, // Start time of the training plan
+        startDate: { type:  String, required: true }, // Start time of the training plan
         endDate: {
-            type: Date,
+            type: String,
             required: true,
         } // End time of the training plan
     },

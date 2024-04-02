@@ -23,12 +23,9 @@ exports.getAllTrainingPlans = async (req, res) => {
 // Update a Training Plan
 exports.updateTrainingPlan = async (req, res) => {
     try {
-        // const updatedTrainingPlan = await TrainingPlan.findOne(req.params.planID, req.body, { new: true });
-        const updatedTrainingPlan = await TrainingPlan.findOneAndUpdate(
-            { planID: req.params.planID }, // Query criteria to find the document to update
-            req.body,       // Update fields
-            { new: true }       // Options: Return the updated document
-        );
+
+        const planID = req.params.planID
+        const updatedTrainingPlan = await TrainingPlan.findByIdAndUpdate(planID,req.body)
         if (!updatedTrainingPlan) {
             return res.status(404).json({ message: 'Training plan not found' });
         }
