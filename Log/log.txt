@@ -54,3 +54,10 @@ Remaining: Form more structured
 //next day plan is to:
 User Dashboard in single page using big calender and all scores and all in one dashboard
 
+Day 6:
+Frontend: Big Calender synced with Backend
+          Modules that are present with all details
+
+Remaining:
+     Scores(make dashboard for all the scores use dashboard) and also validation of the content with respect to the user page 
+     send email when scores or event or plan is added
