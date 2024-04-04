@@ -6,7 +6,10 @@ const TrainingAssessmentor = require('../Controllers/TrainingAssessmenter');
 router.post('/training-assessment', TrainingAssessmentor.createTrainingAssessment);
 
 // Get All Training assessment
-router.get('/training-assessment', TrainingAssessmentor.getAllTrainingAssessments);
+router.get('/training-assessment/:userId', TrainingAssessmentor.getAllTrainingAssessments);
+
+// Delete all training assessment
+router.delete('/training-assessment',TrainingAssessmentor.DeleteAllTrainingAssessments)
 
 
 module.exports = router;

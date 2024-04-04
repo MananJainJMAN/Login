@@ -8,6 +8,9 @@ router.post('/training-modules', trainingModuleController.createTrainingModule);
 // Get All Training Modules
 router.get('/training-modules', trainingModuleController.getAllTrainingModules);
 
+// Get ById Training Modules
+router.get('/training-modules/:moduleID', trainingModuleController.getByIdTrainingModules);
+
 // Update a Training Module
 router.put('/training-modules/:moduleID', trainingModuleController.updateTrainingModule);
 
