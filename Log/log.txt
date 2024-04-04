@@ -66,6 +66,8 @@ Day 7:
       Scores(make dashboard for all the scores use dashboard) and also validation of the content with respect to the user page
       In score visble the name of the modules 
      Remaining:
+          Filter USer By department
+          Schedule Collapsing logic
           Form more structured in admin(frontend)
           Module Completed or not by admin and visible to the user(full)
           Validation for all the input fields check for every form
@@ -74,7 +76,10 @@ Day 7:
           module cards are improper and search also
           manage user filter not working
           recommendator(machine learning)
+    Data: seeding is done now recheck the data for ambiguity
+          remaining: 
+             Ambiguity in training plan date (solve it )
+             using connectors transfer it to the ssms and also automate the whole 
+             data building and process. 
+              Data engineering KPI to decide and then fake dummy data for all the processes
 
-
-
- Data : Data engineering KPI to decide and then fake dummy data for all the processes
