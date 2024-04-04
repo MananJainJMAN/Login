@@ -46,13 +46,9 @@ Data: Read About Data seeding and also data engineering part
 Day 5:
 
 Frontend: almost all modules Completed
-Remaining: Form more structured
-            Module Completed or not
-            Validation for all the input fields
-            route protection
+Remaining: 
 
-//next day plan is to:
-User Dashboard in single page using big calender and all scores and all in one dashboard
+
 
 Day 6:
 Frontend: Big Calender synced with Backend
@@ -60,6 +56,25 @@ Frontend: Big Calender synced with Backend
           score from the data presented
 
 Remaining:
-     Scores(make dashboard for all the scores use dashboard) and also validation of the content with respect to the user page 
-     send email when scores or event or plan is added
-     In score visble the name of the modules
+     
+
+
+
+Day 7:
+    
+    Frontent: 
+      Scores(make dashboard for all the scores use dashboard) and also validation of the content with respect to the user page
+      In score visble the name of the modules 
+     Remaining:
+          Form more structured in admin(frontend)
+          Module Completed or not by admin and visible to the user(full)
+          Validation for all the input fields check for every form
+          route protection for every routes present(Backend)
+          send email when scores or event or plan is added (nodemailer)(Backend)
+          module cards are improper and search also
+          manage user filter not working
+          recommendator(machine learning)
+
+
+
+ Data : Data engineering KPI to decide and then fake dummy data for all the processes
