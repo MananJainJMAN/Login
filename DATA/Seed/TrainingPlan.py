@@ -32,6 +32,10 @@ training_plan_data = []
 # Set to store used module IDs
 used_module_ids = set()
 
+# Function to format date as ISO 8601 string
+def format_iso_date(date):
+    return date.strftime('%Y-%m-%dT%H:%M:%S')
+
 # Generate training plan data
 for i in range(6000):  # Adjust the number of training plans to generate as needed
     plan_name = f"Training Plan {i + 1}"  # Example plan name
@@ -46,15 +50,16 @@ for i in range(6000):  # Adjust the number of training plans to generate as need
     
     # Add the used module ID to the set
     used_module_ids.add(module_id)
+    # Randomly select a start date within the past few years
+    start_date = datetime.now() - timedelta(days=random.randint(1, 365 * 3))  # Random date within the past 3 years
     
-   # Generate random start and end dates within 8 hours
-    start_date = datetime.now() + timedelta(hours=random.randint(0, 7))  # Example start date within 8 hours
-    end_date = start_date + timedelta(hours=random.randint(1, 8))  # Example end date within 8 hours
+    # Randomly select a duration within 6 to 8 hours
+    duration_hours = random.randint(6, 8)
     
-    # Format start and end dates as strings
-    start_date_str = start_date.strftime('%Y-%m-%dT%H:%M')
-    end_date_str = end_date.strftime('%Y-%m-%dT%H:%M')
+    # Calculate end date based on the duration (ensuring it stays within the same day)
+    end_date = start_date + timedelta(hours=duration_hours)
     
+
     # Append data to the training_plan_data list
     training_plan_data.append({
         'planName': plan_name,
@@ -62,8 +67,8 @@ for i in range(6000):  # Adjust the number of training plans to generate as need
         'description': description,
         'moduleID': str(module_id).split("'")[0],
         'schedule': {
-              'startDate': start_date_str,
-            'endDate': end_date_str
+              'startDate': format_iso_date(start_date),
+            'endDate': format_iso_date(end_date)
         }
     })
     print(training_plan_data[i])
@@ -74,6 +79,22 @@ try:
     print(f"{len(result.inserted_ids)} training plan data inserted successfully.")
 except Exception as e:
     print("Error inserting training plan data:", e)
+
+# #inventory.delete_many({})
+# cursor = collection.find({})
+
+# # Iterate over the cursor to print and count documents
+# document_count = 0
+# for document in cursor:
+#     print(document)
+#     document_count += 1
+
+# print("Total documents:", document_count)  # This will show the total count of documents
+
+# # Delete all documents in the 'inventory' collection
+# result = collection.delete_many({})
+
+# print("Number of documents deleted:", result.deleted_count)
 
 # Disconnect from MongoDB
 client.close()

@@ -1,55 +1,64 @@
-const express = require('express')
+const { spawn } = require('child_process');
+const express = require('express');
 const cors = require('cors');
-const connectToDB = require('./config/db')
-const authRouter = require('./Routes/authRouter')
-const TrainPlanRouter = require('./Routes/TrainPlanRouter')
-const TrainModuleRouter = require('./Routes/TrainModuleRouter')
-const TrainingAssessmentRouter = require('./Routes/TrainingAssesRouter')
-const ProgressTrackerRouter = require('./Routes/ProgressTrackerRouter')
-// const rateLimit = require('express-rate-limit')
-const helmet = require('helmet')
-const sanitize = require('express-mongo-sanitize')
-const xss = require('xss-clean')
-const hpp = require('hpp')
+const connectToDB = require('./config/db');
+const authRouter = require('./Routes/authRouter');
+const TrainPlanRouter = require('./Routes/TrainPlanRouter');
+const TrainModuleRouter = require('./Routes/TrainModuleRouter');
+const TrainingAssessmentRouter = require('./Routes/TrainingAssesRouter');
+const ProgressTrackerRouter = require('./Routes/ProgressTrackerRouter');
+const helmet = require('helmet');
+const sanitize = require('express-mongo-sanitize');
+const xss = require('xss-clean');
+const hpp = require('hpp');
 
+const app = express();
+connectToDB();
 
-
-const app = express()
-connectToDB()
-// Middleware to parse JSON request body
-
-app.use(helmet())
-app.use(express.json({limit:'10kb'}));
-
+app.use(helmet());
+app.use(express.json({ limit: '10kb' }));
 app.use(cors());
+app.use(express.static('./public'));
+app.use(sanitize());
+app.use(xss());
+app.use(hpp({ whitelist: ['id', 'token'] }));
 
-app.use(express.static('./public'))
+app.use('/user', authRouter);
+app.use('/admin', TrainPlanRouter, TrainModuleRouter, TrainingAssessmentRouter, ProgressTrackerRouter);
 
-app.use(sanitize())
+let pythonProcess = null;
 
-app.use(xss())
+// Function to start the Python script
+function startPythonScript() {
+    pythonProcess = spawn('python', ['./DATA/Migration/MongoToSSMS.py']);
 
-app.use(hpp({whitelist:['id','token']}))
+    pythonProcess.stdout.on('data', (data) => {
+        console.log(`Python script stdout: ${data}`);
+    });
 
+    pythonProcess.stderr.on('data', (data) => {
+        console.error(`Python script stderr: ${data}`);
+    });
 
-// //rate limiter
+    pythonProcess.on('close', (code) => {
+        console.log(`fetching data from mongodb, status: ${code}`);
+        // Restart the script after a delay (e.g., 5 seconds)
+        setTimeout(startPythonScript, 6000);
+    });
+}
 
-// let limiter = rateLimit(
-//     {
-//         max:500,
-//         windowMs: 60*60*100,
-//         message:"We have recieved many requests, please try again later after one hour",
-//         standardHeaders: true,
-//         legacyHeaders: false,
-//     }
-// )
+// Start the Python script when the server starts
+startPythonScript();
 
-// app.use('/user',limiter)
-app.use('/user',authRouter)
-app.use('/admin',TrainPlanRouter,TrainModuleRouter,TrainingAssessmentRouter,ProgressTrackerRouter)
+// Check if the Python script is running periodically
+setInterval(() => {
+    if (pythonProcess && pythonProcess.exitCode !== null) {
+        // If Python process has exited, restart it
+        startPythonScript();
+    }
+}, 5000); // Check every 5 seconds
 
-
-// Start the server after successfully connecting to the database
-app.listen(5000, () => {
-    console.log('Server started on port 5000');
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
 });

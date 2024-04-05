@@ -83,3 +83,24 @@ Day 7:
              data building and process. 
               Data engineering KPI to decide and then fake dummy data for all the processes
 
+
+Day 8:
+    Data:
+    Ambiguity in training plan date (solve it )
+             using connectors transfer it to the ssms and also automate the whole 
+             data building and process. 
+             Doing : Task Scheduling for auto syncing the mongo to ssms
+     remaining :
+     DBT->
+            drop -v from all
+            Users -> drop -v, password, password_reset_token, password_expires
+            Modules -> prequisites and resourcelinks (object)
+            Plan -> schedule (object)
+            Assessment -> none
+            Progress ->email, score
+            All possible KPI for the business and dashboards
+
+      for data fetching automation I have used two methods
+         1st Task Sceduler from the WIndows
+         2nd corn request(costing much)
+         3rd Using the spawn in the app.js and running the script live(working~ not optimized)
