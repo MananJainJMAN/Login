@@ -66,16 +66,14 @@ Day 7:
       Scores(make dashboard for all the scores use dashboard) and also validation of the content with respect to the user page
       In score visble the name of the modules 
      Remaining:
-          Filter USer By department
           Schedule Collapsing logic
-          Form more structured in admin(frontend)
           Module Completed or not by admin and visible to the user(full)
-          Validation for all the input fields check for every form
           route protection for every routes present(Backend)
-          send email when scores or event or plan is added (nodemailer)(Backend)
-          module cards are improper and search also
-          manage user filter not working
+          send email when scores or event or plan is added (nodemailer)(Backend)(push notifications)
+          module cards are improper and search also add the completed the inprogress fumction 
           recommendator(machine learning)
+          single sign on
+          
     Data: seeding is done now recheck the data for ambiguity
           remaining: 
              Ambiguity in training plan date (solve it )
@@ -102,5 +100,7 @@ Day 8:
 
       for data fetching automation I have used two methods
          1st Task Sceduler from the WIndows
-         2nd corn request(costing much)
+         2nd cron request(costing much)
          3rd Using the spawn in the app.js and running the script live(working~ not optimized)
+
+         Note: keep in mind to start python script in app.js for mongo->ssms

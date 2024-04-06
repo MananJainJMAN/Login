@@ -48,7 +48,7 @@ function startPythonScript() {
 }
 
 // Start the Python script when the server starts
-startPythonScript();
+// startPythonScript();
 
 // Check if the Python script is running periodically
 setInterval(() => {
