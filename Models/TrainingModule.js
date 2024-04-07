@@ -1,7 +1,7 @@
 const User = require('../Models/userModel');
 const mongoose = require('mongoose');
 const trainingModuleSchema = new mongoose.Schema({
-    moduleName: { type: String, required: true },
+    moduleName: { type: String, required: true, unique:true },
     description: { type: String },
     duration: { type: Number, default: 0 }, // Duration of the module in minutes or hours
     difficultyLevel: { type: String, enum: ['Beginner', 'Intermediate', 'Advanced'] }, // Difficulty level of the module
