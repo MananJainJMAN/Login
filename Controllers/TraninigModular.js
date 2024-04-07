@@ -1,11 +1,18 @@
 const TrainingModule = require('../Models/TrainingModule');
+const sendEmail = require('../Utils/Email')
 
 
 // Create a New Training Module
 exports.createTrainingModule = async (req, res) => {
     try {
         const newTrainingModule = await TrainingModule.create(req.body);
+        await sendEmail({
+            email: 'ModuleCreated@gmail.com',
+            subject: 'New Module is Created',
+            message: `Ready for the Module : ${req.body.moduleName}`
+        });
         res.status(201).json(newTrainingModule);
+
     } catch (error) {
         res.status(400).json({ message: error.message });
     }

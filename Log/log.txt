@@ -104,3 +104,10 @@ Day 8:
          3rd Using the spawn in the app.js and running the script live(working~ not optimized)
 
          Note: keep in mind to start python script in app.js for mongo->ssms
+
+         Day 9 :
+                  Schedule Collapsing 
+                  module progress by user(only for data no functionality added)
+                  route protection
+                  push notifications
+                  single sign on
