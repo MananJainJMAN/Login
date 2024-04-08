@@ -1,0 +1,29 @@
+version: 2
+models:
+  - name: trainingEfficiency
+    description: training efficiency
+    columns:
+      - name: training_name
+        description: Unique identifier for the training
+        tests:
+          - unique 
+          - not_null
+      - name: moduleName
+        description: Name of the Module 
+        tests:
+          - unique 
+          - not_null
+      - name: department
+        description: department
+        tests:
+          - not_null
+        name: duration_in_hours
+        description: training duration
+        tests:
+          - not_null
+        name: average_score
+        description: average score in training
+        tests:
+          - not_null
+
+     
