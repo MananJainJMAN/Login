@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: etms
+    database: ETMS
+    schema: dbo
+    tables:
+      - name: assessment_data
+      - name: modules_data
+      - name: plans_data
+      - name: progress_data
+      - name: users_data

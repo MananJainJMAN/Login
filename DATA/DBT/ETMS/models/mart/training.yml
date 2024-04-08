@@ -1,0 +1,27 @@
+version: 2
+models:
+  - name: trainingPlan
+    description: training efficiency
+    columns:
+      - name: email
+        description: Unique identifier for the employee
+        tests:
+          # - unique (because there may be two subjects in which he performed bad so)
+          - not_null
+      - name: min_score_moduleName
+        description: Name of the Module with min. score
+        tests:
+          - not_null
+      - name: min_score
+        description: Minimum score by employee
+        tests:
+          - not_null
+        name: max_score_moduleNam
+        description: Name of the Module with max. score
+        tests:
+          - not_null
+        name: max_score
+        description: Maximum score by employee
+        tests:
+          - not_null
+     

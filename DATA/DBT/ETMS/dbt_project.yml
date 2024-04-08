@@ -32,6 +32,19 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   ETMS:
-    # Config indicated by + and applies to all files under models/example/
-    example:
-      +materialized: view
+    +database: ETMS
+    +materilized: table
+
+    staging:
+      +schema: staging
+
+    mart:
+      +schema: mart
+
+seeds:
+  shopping:
+    +database: shopping
+    +schema: staging
+
+vars:
+  dat: getdate()
