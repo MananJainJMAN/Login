@@ -12,6 +12,7 @@ const sanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
 
+
 const app = express();
 connectToDB();
 
@@ -47,16 +48,43 @@ function startPythonScript() {
     });
 }
 
+function startMachineLearning() {
+    const pythonProcess1 = spawn('python', ['./ML/FlaskApp/Prediction.py']);
+  
+    pythonProcess1.stdout.on('data', (data) => {
+      const output = data.toString().trim();
+      if (output === 'flaskAPI is active') {
+        console.log('Flask API is active');
+        // You can perform additional actions here if needed
+      }
+    });
+  
+    pythonProcess1.stderr.on('data', (data) => {
+      console.error(`Error from Flask API: ${data}`);
+      // Handle error cases if required
+    });
+  
+    pythonProcess1.on('close', (code) => {
+      console.log(`Flask API process exited with code ${code}`);
+      // Handle process close events
+    });
+  }
+  
+
 // Start the Python script when the server starts
 // startPythonScript();
 
-// Check if the Python script is running periodically
-setInterval(() => {
-    if (pythonProcess && pythonProcess.exitCode !== null) {
-        // If Python process has exited, restart it
-        startPythonScript();
-    }
-}, 5000); // Check every 5 seconds
+
+//flask server for machinelearning
+startMachineLearning()
+
+// // Check if the Python script is running periodically
+// setInterval(() => {
+//     if (pythonProcess && pythonProcess.exitCode !== null) {
+//         // If Python process has exited, restart it
+//         startPythonScript();
+//     }
+// }, 5000); // Check every 5 seconds
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
