@@ -16,7 +16,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, 'Please enter your password'],
-        // validate: [validator.isStrongPassword,"Too Weak"]
+        validate: [validator.isStrongPassword,"Too Weak"]
     },
     passwordResetToken: {
         type: String

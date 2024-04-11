@@ -19,8 +19,11 @@ exports.createUser = asyncErrorHandler(async (req, res, next) => {
     // Generate a random password for the new user
     const randomPassword = generator.generate(
         {
-            length:10,
-            strict:true
+            length: 12, // Length of the password (adjust as needed)
+    numbers: true, // Include numbers in the password
+    symbols: true, // Include symbols in the password
+    uppercase: true, // Include uppercase letters in the password
+    strict: true, 
         }
     )
 
