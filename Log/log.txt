@@ -111,3 +111,14 @@ Day 8:
                   route protection
                   push notifications
                   single sign on
+
+      Day 10 : data transformation
+            datamodel for business
+            PowerBi dashboard building
+
+      Day 11: data science
+      machine learning model building
+      pickling,
+      syncing backend frontend and machine learning
+      unit testing 
+      
