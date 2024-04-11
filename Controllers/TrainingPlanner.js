@@ -5,11 +5,6 @@ const TrainingPlan = require('../Models/TrainingPlan');
 exports.createTrainingPlan = async (req, res) => {
     try {
         const newTrainingPlan = await TrainingPlan.create(req.body);
-        // await sendEmail({
-        //     email: 'TrainingPlanCreated@gmail.com',
-        //     subject: 'New Training Plan is Created',
-        //     message: `Ready for the Training : ${JSON.stringify(req.body)}`
-        // });
 
 
         res.status(201).json(newTrainingPlan);
