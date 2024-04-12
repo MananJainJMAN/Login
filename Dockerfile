@@ -1,5 +1,5 @@
 # Use a base image with Node.js pre-installed
-FROM node:18
+FROM node:20-alpine
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -14,7 +14,7 @@ RUN npm install
 COPY . .
 
 # Expose the port that your app runs on
-EXPOSE 3000
+EXPOSE 3002
 
 # Command to run your application
 CMD ["npx","nodemon","app.js"]

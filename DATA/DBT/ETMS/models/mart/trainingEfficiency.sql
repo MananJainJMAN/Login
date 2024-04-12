@@ -22,6 +22,7 @@ TrainingPlanDetails AS (
         p.[planName] AS training_name,
         p.[moduleID],
         mo.[moduleName],
+        mo.[difficultyLevel],
         p.[department],
         p.[start_date],
         p.[end_date],
@@ -41,7 +42,7 @@ TrainingPlanDetails AS (
 SELECT
    t.training_name,
     t.[moduleName],
-	t.department,
+	t.difficultyLevel,
         t.duration_in_hours,
     t.given_by_employee_count,
     t.average_score,

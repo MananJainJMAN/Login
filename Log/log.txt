@@ -1,124 +1,171 @@
-Day1
+Day 1: 
 
-Completed:
-Authentication,Token generation,forgot password, Recreate password
+Completed Tasks: 
 
-Remaining:
-Admin Create the user using the mail ID (its in there but you have to give a button to make user and getting the details)
+Implemented Authentication: 
 
-Day2
+User login with token generation. 
 
-Completed:
-DataModel is ready , API CRUD on the models 
+Forgot password and password reset functionality. 
 
-Remaining:
-User Perspective API and Mapping of the data with respect to him like personalized data 
+Defined User Stories: 
 
-up to go!!! for next frontend, UI design , and functions and features
+Identified admin's need to create users via email. 
 
-Day 3
+Remaining Tasks: 
 
-Completed:
-Frontend:
-Login Page , Admin page , createUser
+Develop UI component (button) for admin to create users. 
 
-Backend:
-mail are sending to them , all apis of the admin is used , user table visible
+Implement backend functionality to process user creation based on email. 
 
-Remaining:
+Day 2: 
 
+Completed Tasks: 
 
+Defined Data Model: 
 
+Created API endpoints for CRUD operations on data models. 
 
-Day 4
+Remaining Tasks: 
 
-Completed:
-cookie creation / session , rate limiting(css prevention), safe header using helmet(brute force, dos), 
-data sanitization , Add search functionality in users, mutating , Add search functionality in user, 
-then user view 
+Implement user-specific API endpoints to personalize data retrieval. 
 
-Remaining:
-Work on each module and that are visible to the users also
-MongoDB mapping with the user and also the inner content
+Establish data mapping based on user context. 
 
-Data: Read About Data seeding and also data engineering part
+ 
 
-Day 5:
+ 
 
-Frontend: almost all modules Completed
-Remaining: 
+ 
 
+ 
 
+ 
 
-Day 6:
-Frontend: Big Calender synced with Backend
-          Modules that are present with all details
-          score from the data presented
+Day 3: 
 
-Remaining:
-     
+Completed Tasks: 
 
+Frontend Development: 
 
+Completed login page, admin page, and user creation UI. 
 
-Day 7:
-    
-    Frontent: 
-      Scores(make dashboard for all the scores use dashboard) and also validation of the content with respect to the user page
-      In score visble the name of the modules 
-     Remaining:
-          Schedule Collapsing logic
-          Module Completed or not by admin and visible to the user(full)
-          route protection for every routes present(Backend)
-          send email when scores or event or plan is added (nodemailer)(Backend)(push notifications)
-          module cards are improper and search also add the completed the inprogress fumction 
-          recommendator(machine learning)
-          single sign on
-          
-    Data: seeding is done now recheck the data for ambiguity
-          remaining: 
-             Ambiguity in training plan date (solve it )
-             using connectors transfer it to the ssms and also automate the whole 
-             data building and process. 
-              Data engineering KPI to decide and then fake dummy data for all the processes
+Backend Development: 
 
+Implemented email sending functionality. 
 
-Day 8:
-    Data:
-    Ambiguity in training plan date (solve it )
-             using connectors transfer it to the ssms and also automate the whole 
-             data building and process. 
-             Doing : Task Scheduling for auto syncing the mongo to ssms
-     remaining :
-     DBT->
-            drop -v from all
-            Users -> drop -v, password, password_reset_token, password_expires
-            Modules -> prequisites and resourcelinks (object)
-            Plan -> schedule (object)
-            Assessment -> none
-            Progress ->email, score
-            All possible KPI for the business and dashboards
+Integrated admin API for user table visibility. 
 
-      for data fetching automation I have used two methods
-         1st Task Sceduler from the WIndows
-         2nd cron request(costing much)
-         3rd Using the spawn in the app.js and running the script live(working~ not optimized)
+Remaining Tasks: 
 
-         Note: keep in mind to start python script in app.js for mongo->ssms
+Implement and expose all modules and functionalities to users. 
 
-         Day 9 :
-                  Schedule Collapsing 
-                  module progress by user(only for data no functionality added)
-                  route protection
-                  push notifications
-                  single sign on
+Day 4: 
 
-      Day 10 : data transformation
-            datamodel for business
-            PowerBi dashboard building
+Completed Tasks: 
 
-      Day 11: data science
-      machine learning model building
-      pickling,
-      syncing backend frontend and machine learning
-      unit testing 
-      
+Backend Security Measures: 
+
+Implemented cookie/session management, rate limiting, and safe headers using Helmet. 
+
+Implemented data sanitization and search functionality in users. 
+
+Remaining Tasks: 
+
+Finalize user-visible module functionalities and MongoDB data mapping. 
+
+ 
+
+Day 5: 
+
+Completed Tasks: 
+
+Frontend Development: 
+
+Completed modules with detailed views and score presentation. 
+
+Remaining Tasks: 
+
+Research and implement data seeding and engineering for optimized data management. 
+
+Day 6: 
+
+Completed Tasks: 
+
+Integrated Big Calendar with backend for scheduling. 
+
+Ensured visibility and functionality of all modules. 
+
+Remaining Tasks: 
+
+Implement dashboard for user scores and validate content relevance. 
+
+Day 7: 
+
+Completed Tasks: 
+
+Implemented schedule collapsing and route protection. 
+
+Integrated nodemailer for notifications and improved module cards and search functionality. 
+
+Remaining Tasks: 
+
+Implement single sign-on (SSO) and explore recommendation systems. 
+
+ 
+
+Day 8: 
+
+Completed Tasks: 
+
+Resolved ambiguity in training plan dates and automated data transfer to SSMS. 
+
+Remaining Tasks: 
+
+Finalized database transformations and business KPIs for dashboards. 
+
+ 
+
+Day 9: 
+
+Completed Tasks: 
+
+Implemented schedule collapsing and started tracking module progress. 
+
+Enhanced route protection, security, and push notifications. 
+
+Remaining Tasks: 
+
+Continue integrating SSO and ensure comprehensive data synchronization. 
+
+Day 10: 
+
+Completed Tasks: 
+
+Refined data models and built Power BI dashboards. 
+
+Remaining Tasks: 
+
+Finalize machine learning models, unit testing, and comprehensive project documentation. 
+
+ 
+
+ 
+
+Day 11: 
+
+Completed Tasks: 
+
+Deployed machine learning models and completed unit testing. 
+
+Documented project progress and insights in a comprehensive log. 
+
+This structured project timeline outlines the major milestones and tasks completed each day, providing a clear overview of the project's progress and expected deliverables within the allocated timeframe. Adjustments may be made based on project requirements, resource availability, and evolving priorities during development. 
+
+ 
+
+ 
+
+ 
+
+ 

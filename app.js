@@ -1,4 +1,7 @@
 const { spawn } = require('child_process');
+const path = require('path');
+const { exec } = require('child_process');
+
 const express = require('express');
 const cors = require('cors');
 const connectToDB = require('./config/db');
@@ -11,7 +14,6 @@ const helmet = require('helmet');
 const sanitize = require('express-mongo-sanitize');
 const xss = require('xss-clean');
 const hpp = require('hpp');
-
 
 const app = express();
 connectToDB();
@@ -29,7 +31,7 @@ app.use('/admin', TrainPlanRouter, TrainModuleRouter, TrainingAssessmentRouter, 
 
 let pythonProcess = null;
 
-// Function to start the Python script
+//Function to start the Python script
 function startPythonScript() {
     pythonProcess = spawn('python', ['./DATA/Migration/MongoToSSMS.py']);
 
@@ -46,6 +48,30 @@ function startPythonScript() {
         // Restart the script after a delay (e.g., 5 seconds)
         setTimeout(startPythonScript, 6000);
     });
+}
+
+
+function dbtTrigger(req, res) {
+  const dbtMainProjectFolderPath = path.join(__dirname, 'DATA', 'DBT', 'ETMS');
+
+  // Change the working directory to the main_project folder
+  process.chdir(dbtMainProjectFolderPath);
+
+  // Execute the DBT command
+  exec('dbt run', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error: ${error.message}`);
+      return res.status(500).send(`DBT execution failed: ${error.message}`);
+    }
+    
+    if (stderr) {
+      console.error(`Error: ${stderr}`);
+      return res.status(500).send(`DBT execution failed: ${stderr}`);
+    }
+
+    console.log(`DBT output: ${stdout}`);
+    res.status(200).send('DBT execution successful');
+  });
 }
 
 function startMachineLearning() {
@@ -71,12 +97,15 @@ function startMachineLearning() {
   }
   
 
-// Start the Python script when the server starts
+// // Start the Python script when the server starts
 // startPythonScript();
 
 
 //flask server for machinelearning
 startMachineLearning()
+
+// //DBT Trigger 
+// dbtTrigger()
 
 // // Check if the Python script is running periodically
 // setInterval(() => {
