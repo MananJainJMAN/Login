@@ -1,9 +1,7 @@
 const User = require('../Models/userModel');
 const asyncErrorHandler = require('../Utils/asyncErrorHandler');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
 const { error } = require('console');
-const util = require('util')
 const sendEmail = require('../Utils/Email')
 const crypto = require('crypto')
 const generator = require('generate-password');
